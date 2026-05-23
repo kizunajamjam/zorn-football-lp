@@ -1,0 +1,1124 @@
+﻿<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ZORN Football School | 近江八幡の小中学生向けサッカースクール</title>
+  <meta name="description" content="ZORN Football School は近江八幡の小中学生向けサッカースクールです。楽しみながら本物の技術を身につけよう。体験無料！" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;900&family=Oswald:wght@600;700&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet" />
+  <style>
+    /* ===== Reset & Base ===== */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'DM Sans', 'Noto Sans JP', sans-serif;
+      color: #0f172a;
+      background: #fff;
+      line-height: 1.75;
+    }
+    img { max-width: 100%; display: block; }
+    a { text-decoration: none; color: inherit; }
+
+    /* ===== Variables ===== */
+    :root {
+      --navy: #111111;
+      --navy-mid: #1c1c1c;
+      --red: #f5c518;
+      --red-pale: #fefce8;
+      --green: #16a34a;
+      --dark: #0a0a0a;
+      --gray: #f7f7f7;
+      --border: #e5e5e5;
+      --text-muted: #6b7280;
+      --radius: 10px;
+      --shadow: 0 4px 32px rgba(0,0,0,0.12);
+    }
+
+    /* ===== Utilities ===== */
+    .container { max-width: 1080px; margin: 0 auto; padding: 0 24px; }
+    .section { padding: 96px 0; }
+    .section-title {
+      font-family: 'Oswald', 'Noto Sans JP', sans-serif;
+      font-size: clamp(1.8rem, 4vw, 2.6rem);
+      font-weight: 700;
+      color: var(--navy);
+      margin-bottom: 10px;
+      letter-spacing: 0.01em;
+      line-height: 1.2;
+    }
+    .section-sub {
+      font-size: 0.92rem;
+      color: var(--text-muted);
+      margin-bottom: 52px;
+      letter-spacing: 0.03em;
+    }
+    .section-header { text-align: center; }
+    .badge {
+      display: inline-block;
+      background: var(--red-pale);
+      color: var(--red);
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      padding: 5px 14px;
+      border-radius: 4px;
+      margin-bottom: 14px;
+      text-transform: uppercase;
+    }
+
+    /* ===== Buttons ===== */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 15px 32px;
+      border-radius: 6px;
+      font-family: 'DM Sans', 'Noto Sans JP', sans-serif;
+      font-weight: 700;
+      font-size: 0.95rem;
+      cursor: pointer;
+      transition: transform 0.15s, box-shadow 0.15s, background 0.15s;
+      border: none;
+      letter-spacing: 0.02em;
+    }
+    .btn:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(0,0,0,0.20); }
+    .btn-primary { background: var(--red); color: #0a0a0a; }
+    .btn-primary:hover { background: #e0b416; }
+    .btn-line { background: #06c755; color: #fff; }
+    .btn-outline { background: transparent; border: 2px solid rgba(255,255,255,0.6); color: #fff; }
+    .btn-outline:hover { border-color: #fff; background: rgba(255,255,255,0.08); }
+
+    /* ===== Header ===== */
+    header {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      background: rgba(255,255,255,0.95);
+      backdrop-filter: blur(8px);
+      border-bottom: 1px solid #e8e8e8;
+    }
+    .header-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 64px;
+      padding: 0 24px;
+      max-width: 1080px;
+      margin: 0 auto;
+    }
+    .logo {
+      font-family: 'Oswald', sans-serif;
+      font-weight: 700;
+      font-size: 1.25rem;
+      color: var(--navy);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+    .logo span { color: var(--red); }
+    .logo-img { height: 40px; width: auto; object-fit: contain; display: block; mix-blend-mode: multiply; }
+    nav { display: flex; gap: 28px; align-items: center; }
+    nav a {
+      font-size: 0.85rem;
+      font-weight: 700;
+      color: var(--navy-mid);
+      transition: color 0.15s;
+      letter-spacing: 0.03em;
+    }
+    nav a:hover { color: var(--red); }
+    .nav-cta {
+      background: var(--red);
+      color: #0a0a0a !important;
+      padding: 9px 22px;
+      border-radius: 6px;
+      font-weight: 700;
+    }
+    .nav-cta:hover { background: #e0b416; }
+    .hamburger { display: none; cursor: pointer; }
+
+    /* ===== Hero ===== */
+    #hero {
+      min-height: 100svh;
+      background: var(--navy);
+      display: flex;
+      align-items: center;
+      position: relative;
+      overflow: hidden;
+      padding-top: 64px;
+    }
+    #hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background:
+        linear-gradient(135deg, rgba(245,197,24,0.10) 0%, transparent 50%),
+        url("data:image/svg+xml,%3Csvg width='80' height='80' viewBox='0 0 80 80' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23ffffff' fill-opacity='0.02'%3E%3Cpath d='M0 0h80v80H0z'/%3E%3Cpath fill='none' stroke='%23ffffff' stroke-opacity='0.04' stroke-width='1' d='M0 40h80M40 0v80'/%3E%3C/g%3E%3C/svg%3E");
+    }
+    .hero-stripe {
+      position: absolute;
+      top: 0; right: 0;
+      width: 45%;
+      height: 100%;
+      background: linear-gradient(160deg, rgba(245,197,24,0.07) 0%, transparent 60%);
+      border-left: 1px solid rgba(245,197,24,0.12);
+    }
+    .hero-content {
+      position: relative;
+      z-index: 1;
+      color: #fff;
+      max-width: 680px;
+    }
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(245,197,24,0.15);
+      border: 1px solid rgba(245,197,24,0.4);
+      color: #f5c518;
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      padding: 6px 16px;
+      border-radius: 4px;
+      margin-bottom: 28px;
+      text-transform: uppercase;
+    }
+    .hero-title {
+      font-family: 'Oswald', 'Noto Sans JP', sans-serif;
+      font-size: clamp(2.6rem, 8vw, 5rem);
+      font-weight: 700;
+      line-height: 1.1;
+      margin-bottom: 28px;
+      letter-spacing: 0.01em;
+    }
+    .hero-title .accent { color: var(--red); }
+    .hero-title .accent-line {
+      display: block;
+      position: relative;
+    }
+    .hero-desc {
+      font-size: 1rem;
+      color: rgba(255,255,255,0.7);
+      margin-bottom: 40px;
+      max-width: 480px;
+      line-height: 1.8;
+    }
+    .hero-buttons { display: flex; gap: 12px; flex-wrap: wrap; }
+    .hero-meta {
+      display: flex;
+      gap: 0;
+      margin-top: 52px;
+      padding-top: 36px;
+      border-top: 1px solid rgba(255,255,255,0.1);
+    }
+    .hero-meta-item {
+      padding-right: 36px;
+      margin-right: 36px;
+      border-right: 1px solid rgba(255,255,255,0.1);
+    }
+    .hero-meta-item:last-child { border-right: none; margin-right: 0; }
+    .hero-meta-item span:first-child {
+      display: block;
+      font-family: 'Oswald', sans-serif;
+      font-size: 1.6rem;
+      font-weight: 700;
+      color: var(--red);
+      line-height: 1.2;
+    }
+    .hero-meta-item span:last-child {
+      font-size: 0.75rem;
+      color: rgba(255,255,255,0.45);
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+    }
+
+    /* ===== Pain Section ===== */
+    #pain { background: var(--navy); }
+    #pain .section-title { color: #fff; }
+    #pain .section-sub { color: rgba(255,255,255,0.45); }
+    #pain .badge { background: rgba(245,197,24,0.15); color: #f5c518; }
+    .pain-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 32px;
+      align-items: start;
+    }
+    .pain-box {
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: var(--radius);
+      padding: 32px;
+    }
+    .pain-box-title {
+      font-family: 'Oswald', 'Noto Sans JP', sans-serif;
+      font-size: 1rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      margin-bottom: 20px;
+      color: rgba(255,255,255,0.5);
+      text-transform: uppercase;
+    }
+    .pain-list { list-style: none; display: flex; flex-direction: column; gap: 14px; }
+    .pain-list li {
+      font-size: 0.95rem;
+      color: rgba(255,255,255,0.75);
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      line-height: 1.6;
+    }
+    .pain-list li::before {
+      content: '?';
+      font-family: 'Oswald', sans-serif;
+      font-weight: 700;
+      font-size: 0.8rem;
+      color: var(--red);
+      background: rgba(245,197,24,0.15);
+      border: 1px solid rgba(245,197,24,0.3);
+      width: 22px; height: 22px;
+      border-radius: 4px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+    .solution-list { list-style: none; display: flex; flex-direction: column; gap: 14px; }
+    .solution-list li {
+      font-size: 0.95rem;
+      color: rgba(255,255,255,0.85);
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      line-height: 1.6;
+    }
+    .solution-list li::before {
+      content: '';
+      width: 22px; height: 22px;
+      background: var(--red);
+      border-radius: 4px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      margin-top: 2px;
+      background-image: url("data:image/svg+xml,%3Csvg width='12' height='10' viewBox='0 0 12 10' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1 5l3.5 3.5L11 1' stroke='%230a0a0a' stroke-width='2' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: center;
+    }
+    .solution-list li strong { display: block; color: #fff; margin-bottom: 2px; }
+    .solution-list li span { font-size: 0.83rem; color: rgba(255,255,255,0.5); display: block; }
+    .pain-cta {
+      grid-column: 1 / -1;
+      background: rgba(245,197,24,0.10);
+      border: 1px solid rgba(245,197,24,0.25);
+      border-radius: var(--radius);
+      padding: 24px 32px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+      flex-wrap: wrap;
+    }
+    .pain-cta p { color: rgba(255,255,255,0.8); font-size: 0.95rem; }
+    .pain-cta strong { color: #fff; font-size: 1.05rem; display: block; margin-bottom: 4px; }
+
+    /* ===== About ===== */
+    #about { background: #fff; }
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 72px;
+      align-items: center;
+    }
+    .about-visual {
+      background: var(--navy);
+      border-radius: 16px;
+      aspect-ratio: 4/3;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 6rem;
+      box-shadow: var(--shadow);
+      position: relative;
+      overflow: hidden;
+    }
+    .about-visual::after {
+      content: '';
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      height: 4px;
+      background: var(--red);
+    }
+    .about-text .section-title { text-align: left; }
+    .about-text .badge { display: inline-block; }
+    .about-lead {
+      font-size: 1rem;
+      color: #334155;
+      margin-bottom: 28px;
+      line-height: 1.8;
+    }
+    .about-values { display: flex; flex-direction: column; gap: 20px; }
+    .about-value {
+      display: flex;
+      gap: 16px;
+      align-items: flex-start;
+    }
+    .about-value-icon {
+      width: 44px; height: 44px;
+      background: var(--red-pale);
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Oswald', sans-serif;
+      font-size: 0.9rem;
+      font-weight: 700;
+      color: var(--red);
+      flex-shrink: 0;
+      letter-spacing: 0.05em;
+    }
+    .about-value-text strong { display: block; font-size: 0.95rem; margin-bottom: 3px; color: var(--navy); }
+    .about-value-text p { font-size: 0.87rem; color: var(--text-muted); }
+
+    /* ===== Features ===== */
+    #features { background: var(--navy); }
+    #features .section-title { color: #fff; }
+    #features .section-sub { color: rgba(255,255,255,0.45); }
+    #features .badge { background: rgba(245,197,24,0.15); color: #f5c518; }
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2px;
+      background: rgba(255,255,255,0.06);
+      border-radius: var(--radius);
+      overflow: hidden;
+    }
+    .feature-card {
+      background: rgba(255,255,255,0.04);
+      padding: 40px 32px;
+      transition: background 0.2s;
+      border-bottom: 3px solid transparent;
+    }
+    .feature-card:hover { background: rgba(255,255,255,0.07); border-bottom-color: var(--red); }
+    .feature-number {
+      font-family: 'Oswald', sans-serif;
+      font-size: 3rem;
+      font-weight: 700;
+      color: rgba(245,197,24,0.25);
+      line-height: 1;
+      margin-bottom: 16px;
+    }
+    .feature-icon { font-size: 2rem; margin-bottom: 14px; }
+    .feature-card h3 { font-size: 1.05rem; margin-bottom: 10px; color: #fff; font-family: 'DM Sans', 'Noto Sans JP', sans-serif; font-weight: 700; }
+    .feature-card p { font-size: 0.88rem; color: rgba(255,255,255,0.55); line-height: 1.7; }
+
+    /* ===== Classes ===== */
+    #classes { background: var(--gray); }
+    .classes-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 24px;
+      max-width: 760px;
+      margin: 0 auto;
+    }
+    .class-card {
+      border: 1.5px solid var(--border);
+      border-radius: var(--radius);
+      overflow: hidden;
+      background: #fff;
+      transition: border-color 0.2s, box-shadow 0.2s, transform 0.2s;
+    }
+    .class-card:hover { border-color: var(--navy); transform: translateY(-4px); box-shadow: var(--shadow); }
+    .class-card.featured { border-color: var(--red); position: relative; }
+    .class-card.featured::before {
+      content: 'おすすめ';
+      position: absolute;
+      top: 14px; right: 14px;
+      background: var(--red);
+      color: #0a0a0a;
+      font-size: 0.68rem;
+      font-weight: 700;
+      padding: 3px 10px;
+      border-radius: 3px;
+      letter-spacing: 0.05em;
+    }
+    .class-header {
+      padding: 22px 24px;
+      background: var(--navy);
+      color: #fff;
+      border-bottom: 3px solid transparent;
+    }
+    .class-card.featured .class-header { border-bottom-color: var(--red); }
+    .class-header h3 { font-size: 1rem; margin-bottom: 4px; font-family: 'Oswald', 'Noto Sans JP', sans-serif; font-weight: 700; letter-spacing: 0.03em; }
+    .class-header .age { font-size: 0.8rem; opacity: 0.6; }
+    .class-body { padding: 24px; }
+    .class-price {
+      font-family: 'Oswald', sans-serif;
+      font-size: 2rem;
+      font-weight: 700;
+      color: var(--navy);
+      margin-bottom: 6px;
+      line-height: 1;
+    }
+    .class-price span { font-size: 0.85rem; font-weight: 400; color: var(--text-muted); font-family: 'DM Sans', sans-serif; }
+    .class-schedule { font-size: 0.82rem; color: var(--text-muted); margin-bottom: 18px; }
+    .class-features { list-style: none; display: flex; flex-direction: column; gap: 9px; }
+    .class-features li { font-size: 0.87rem; display: flex; gap: 10px; align-items: flex-start; }
+    .class-features li::before { content: '—'; color: var(--red); font-weight: 700; flex-shrink: 0; }
+
+    /* ===== Coach ===== */
+    #coach { background: #fff; border-top: 1px solid var(--border); }
+    .coach-grid {
+      max-width: 680px;
+      margin: 0 auto;
+    }
+    .coach-info { color: var(--navy); }
+    .coach-name {
+      font-family: 'Oswald', 'Noto Sans JP', sans-serif;
+      font-size: 2.4rem;
+      font-weight: 700;
+      margin-bottom: 4px;
+      letter-spacing: 0.02em;
+    }
+    .coach-title { font-size: 0.88rem; color: var(--text-muted); margin-bottom: 24px; letter-spacing: 0.03em; }
+    .coach-bio { font-size: 0.95rem; color: #334155; margin-bottom: 28px; line-height: 1.9; }
+    .coach-certs { display: flex; flex-wrap: wrap; gap: 8px; }
+    .cert {
+      background: var(--gray);
+      border: 1.5px solid var(--border);
+      color: var(--navy-mid);
+      font-size: 0.78rem;
+      font-weight: 700;
+      padding: 6px 14px;
+      border-radius: 4px;
+      letter-spacing: 0.03em;
+    }
+    .coach-slideshow {
+      position: relative;
+      width: 100%;
+      aspect-ratio: 3/2;
+      border-radius: var(--radius);
+      border: 1.5px solid var(--border);
+      overflow: hidden;
+      margin-bottom: 24px;
+    }
+    .coach-slideshow .slide {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      opacity: 0;
+      transition: opacity 0.7s ease;
+    }
+    .coach-slideshow .slide.active { opacity: 1; }
+    .slide-dots {
+      position: absolute;
+      bottom: 14px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      gap: 7px;
+      z-index: 2;
+    }
+    .slide-dot {
+      width: 8px; height: 8px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.4);
+      cursor: pointer;
+      transition: background 0.2s;
+      border: none;
+      padding: 0;
+    }
+    .slide-dot.active { background: #fff; }
+
+    /* ===== Trial ===== */
+    #trial { background: var(--navy); }
+    .trial-card {
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 16px;
+      padding: 60px 52px;
+      text-align: center;
+      max-width: 680px;
+      margin: 0 auto;
+    }
+    .trial-icon { font-size: 3rem; margin-bottom: 20px; }
+    .trial-card h2 {
+      font-family: 'Oswald', 'Noto Sans JP', sans-serif;
+      font-size: clamp(1.8rem, 4vw, 2.4rem);
+      font-weight: 700;
+      color: #fff;
+      margin-bottom: 14px;
+      letter-spacing: 0.02em;
+    }
+    .trial-card p { font-size: 0.93rem; color: rgba(255,255,255,0.55); margin-bottom: 36px; }
+    .trial-points {
+      display: flex;
+      justify-content: center;
+      gap: 0;
+      margin-bottom: 40px;
+      flex-wrap: wrap;
+    }
+    .trial-point {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 6px;
+      padding: 0 28px;
+      border-right: 1px solid rgba(255,255,255,0.1);
+    }
+    .trial-point:last-child { border-right: none; }
+    .trial-point span:first-child { font-family: 'Oswald', sans-serif; font-size: 1rem; font-weight: 700; color: var(--red); letter-spacing: 0.08em; }
+    .trial-point span:last-child { font-size: 0.75rem; color: rgba(255,255,255,0.45); font-weight: 700; letter-spacing: 0.05em; text-transform: uppercase; }
+    .trial-buttons { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
+
+    /* ===== LINE Banner ===== */
+    #line-banner {
+      background: #06c755;
+      padding: 40px 0;
+      text-align: center;
+    }
+    .line-inner { display: flex; align-items: center; justify-content: center; gap: 24px; flex-wrap: wrap; }
+    .line-text { color: #fff; }
+    .line-text strong { display: block; font-size: 1.2rem; margin-bottom: 4px; }
+    .line-text p { font-size: 0.9rem; opacity: 0.9; }
+    .btn-line-white { background: #fff; color: #06c755 !important; font-weight: 700; }
+
+    /* ===== Footer ===== */
+    footer {
+      background: var(--navy);
+      color: rgba(255,255,255,0.5);
+      padding: 56px 0 28px;
+    }
+    .footer-inner {
+      display: grid;
+      grid-template-columns: 1.5fr 1fr 1fr;
+      gap: 48px;
+      margin-bottom: 48px;
+    }
+    .footer-brand .logo { color: #fff; margin-bottom: 14px; }
+    .footer-brand p { font-size: 0.84rem; line-height: 1.7; }
+    .footer-col h4 { color: rgba(255,255,255,0.8); font-size: 0.75rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 18px; }
+    .footer-col ul { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+    .footer-col ul li a { font-size: 0.84rem; transition: color 0.15s; }
+    .footer-col ul li a:hover { color: #fff; }
+    .footer-bottom {
+      border-top: 1px solid rgba(255,255,255,0.08);
+      padding-top: 24px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 0.78rem;
+    }
+    .social-links { display: flex; gap: 10px; }
+    .social-link {
+      width: 36px; height: 36px;
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 6px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1rem;
+      transition: background 0.15s, border-color 0.15s;
+    }
+    .social-link:hover { background: rgba(255,255,255,0.12); border-color: rgba(255,255,255,0.2); }
+
+    /* ===== FAQ ===== */
+    #faq { background: var(--gray); }
+    .faq-list { max-width: 720px; margin: 0 auto; display: flex; flex-direction: column; gap: 2px; border-radius: var(--radius); overflow: hidden; border: 1.5px solid var(--border); }
+    details {
+      background: #fff;
+      overflow: hidden;
+    }
+    summary {
+      padding: 20px 24px;
+      font-weight: 700;
+      cursor: pointer;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      list-style: none;
+      font-size: 0.93rem;
+      color: var(--navy);
+      border-top: 1px solid var(--border);
+    }
+    details:first-child summary { border-top: none; }
+    summary::-webkit-details-marker { display: none; }
+    summary::after {
+      content: '+';
+      font-size: 1.2rem;
+      color: var(--red);
+      font-family: 'Oswald', sans-serif;
+      font-weight: 700;
+      flex-shrink: 0;
+      margin-left: 16px;
+    }
+    details[open] summary::after { content: '−'; }
+    details[open] summary { color: var(--red); }
+    .faq-answer { padding: 0 24px 20px; font-size: 0.88rem; color: var(--text-muted); line-height: 1.8; }
+
+    /* ===== Gallery ===== */
+    #gallery { background: var(--gray); }
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 8px;
+      border-radius: var(--radius);
+      overflow: hidden;
+    }
+    .gallery-photo {
+      width: 100%;
+      aspect-ratio: 1;
+      object-fit: cover;
+      display: block;
+      transition: opacity 0.2s;
+    }
+    .gallery-photo:hover { opacity: 0.88; }
+    .gallery-more {
+      text-align: center;
+      margin-top: 36px;
+    }
+    .btn-dark { background: var(--navy); color: #fff; }
+    .btn-dark:hover { background: #222; }
+
+    /* ===== Responsive ===== */
+    @media (max-width: 768px) {
+      nav a:not(.nav-cta):not(:last-child) { display: none; }
+      .pain-grid { grid-template-columns: 1fr; }
+      .pain-cta { flex-direction: column; align-items: flex-start; }
+      .about-grid { grid-template-columns: 1fr; gap: 32px; }
+      .about-visual { aspect-ratio: 2/1; }
+      .features-grid { grid-template-columns: 1fr; }
+      .classes-grid { grid-template-columns: 1fr; max-width: 100%; }
+      .coach-grid { grid-template-columns: 1fr; }
+      .coach-photos { margin-top: 32px; }
+      .gallery-grid { grid-template-columns: repeat(2, 1fr); }
+      .footer-inner { grid-template-columns: 1fr; gap: 32px; }
+      .footer-bottom { flex-direction: column; gap: 16px; text-align: center; }
+      .trial-card { padding: 40px 24px; }
+      .hero-meta { flex-wrap: wrap; gap: 20px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ===== Header ===== -->
+  <header>
+    <div class="header-inner">
+      <a href="#hero" style="display:block;line-height:0;"><img src="images/logo.jpg" alt="ZORN Football School" class="logo-img" /></a>
+      <nav>
+        <a href="#about">スクールについて</a>
+        <a href="#classes">クラス</a>
+        <a href="#coach">コーチ</a>
+        <a href="#trial" class="nav-cta">体験申込</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- ===== Hero ===== -->
+  <section id="hero">
+    <div class="container">
+      <div class="hero-content">
+        <div class="hero-badge">初心者大歓迎 — 近江八幡のサッカースクール</div>
+        <h1 class="hero-title">
+          「できた！」が増える<br>
+          <span class="accent">サッカースクール</span>
+        </h1>
+        <p class="hero-desc">
+          挑戦する心が、自信になる。<br>
+          一人ひとりの成長に寄り添います。
+        </p>
+        <div class="hero-buttons">
+          <a href="#trial" class="btn btn-primary">無料体験に申し込む</a>
+          <a href="#gallery" class="btn btn-outline">スクールを見る</a>
+        </div>
+        <div class="hero-meta">
+          <div class="hero-meta-item">
+            <span>無料</span>
+            <span>体験参加</span>
+          </div>
+          <div class="hero-meta-item">
+            <span>年中〜小6</span>
+            <span>対象年齢</span>
+          </div>
+          <div class="hero-meta-item">
+            <span>近江八幡</span>
+            <span>練習場所</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="hero-stripe"></div>
+  </section>
+
+  <!-- ===== Pain ===== -->
+  <section id="pain" class="section">
+    <div class="container">
+      <div class="section-header">
+        <span class="badge">こんなお悩みありませんか？</span>
+        <h2 class="section-title">お子さんのことが<br>心配な保護者の方へ</h2>
+        <p class="section-sub">ZORN Football School はその悩みを解決します</p>
+      </div>
+      <div class="pain-grid">
+        <div class="pain-box">
+          <div class="pain-box-title">よくある不安</div>
+          <ul class="pain-list">
+            <li>運動が苦手でついていけるか不安</li>
+            <li>サッカー未経験でも大丈夫か心配</li>
+            <li>子どもに自信を持てるようになってほしい</li>
+          </ul>
+        </div>
+        <div class="pain-box">
+          <div class="pain-box-title">ZORNなら解決できます</div>
+          <ul class="solution-list">
+            <li>
+              <div><strong>初心者でも安心の丁寧な指導</strong><span>基礎から楽しく学べるから、初めてでも安心！</span></div>
+            </li>
+            <li>
+              <div><strong>一人ひとりに寄り添ったサポート</strong><span>子どもたちの個性やペースを大切にします。</span></div>
+            </li>
+            <li>
+              <div><strong>「できた！」を積み重ねて自信に</strong><span>成功体験を増やし、挑戦する力を育てます。</span></div>
+            </li>
+          </ul>
+        </div>
+        <div class="pain-cta">
+          <div>
+            <strong>元プロサッカー選手が直接指導します！</strong>
+            <p>野洲高校主将・プロ経験者の西村コーチが、お子さんの可能性を引き出します。</p>
+          </div>
+          <a href="#trial" class="btn btn-primary">無料体験に申し込む</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== About ===== -->
+  <section id="about" class="section">
+    <div class="container">
+      <div class="about-grid">
+        <div class="about-visual">⚽</div>
+        <div class="about-text">
+          <span class="badge">ABOUT</span>
+          <h2 class="section-title">サッカーを通じて、<br>人を育てる。</h2>
+          <p class="about-lead">
+            ZORN Football School は「楽しさ」と「成長」を両立させることを大切にしています。
+            上手くなるだけでなく、仲間と切磋琢磨しながら自分自身を磨いていく場所です。
+          </p>
+          <div class="about-values">
+            <div class="about-value">
+              <div class="about-value-icon">01</div>
+              <div class="about-value-text">
+                <strong>個に寄り添う指導</strong>
+                <p>一人ひとりのペースと個性を尊重した指導を行います。</p>
+              </div>
+            </div>
+            <div class="about-value">
+              <div class="about-value-icon">02</div>
+              <div class="about-value-text">
+                <strong>仲間と成長する環境</strong>
+                <p>チームワークを育み、社会で活きるコミュニケーション力を磨きます。</p>
+              </div>
+            </div>
+            <div class="about-value">
+              <div class="about-value-icon">03</div>
+              <div class="about-value-text">
+                <strong>本物の技術と楽しさ</strong>
+                <p>楽しみながらも、本物の技術が身につくカリキュラムを提供します。</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== Gallery ===== -->
+  <section id="gallery" class="section">
+    <div class="container">
+      <div class="section-header">
+        <span class="badge">GALLERY</span>
+        <h2 class="section-title">スクールの様子</h2>
+        <p class="section-sub">練習・イベントの様子をご覧ください</p>
+      </div>
+      <div class="gallery-grid" id="galleryGrid"></div>
+      <div class="gallery-more">
+        <a href="https://www.instagram.com/zorn_football_school/" target="_blank" rel="noopener" class="btn btn-dark">
+          Instagramでもっと見る
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== Features ===== -->
+  <section id="features" class="section">
+    <div class="container">
+      <div class="section-header">
+        <span class="badge">FEATURES</span>
+        <h2 class="section-title">ZORNが選ばれる3つの理由</h2>
+        <p class="section-sub">ほかのスクールにはない、ZORNだけの特長</p>
+      </div>
+      <div class="features-grid">
+        <div class="feature-card">
+          <div class="feature-number">01</div>
+          <h3>初心者でも安心の丁寧な指導</h3>
+          <p>基礎から楽しく学べるカリキュラム。サッカーが初めてでも、運動が苦手でも安心して参加できます。</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-number">02</div>
+          <h3>一人ひとりに寄り添ったサポート</h3>
+          <p>子どもたちの個性やペースを大切に。少人数制で、コーチが一人ひとりをしっかり見守ります。</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-number">03</div>
+          <h3>「できた！」を積み重ねて自信に</h3>
+          <p>成功体験を増やし、挑戦する力を育てます。サッカーを通じて、子どもの自己肯定感を高めます。</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== Classes ===== -->
+  <section id="classes" class="section">
+    <div class="container">
+      <div class="section-header">
+        <span class="badge">CLASSES</span>
+        <h2 class="section-title">クラス</h2>
+        <p class="section-sub">お子さんの年齢に合わせた2クラス制 ／ 毎週木曜開催</p>
+      </div>
+      <div class="classes-grid">
+        <div class="class-card">
+          <div class="class-header">
+            <h3>キッズクラス</h3>
+            <div class="age">年中さん〜年長さん対象</div>
+          </div>
+          <div class="class-body">
+            <div class="class-schedule">毎週木曜 18:00〜19:00</div>
+            <ul class="class-features">
+              <li>ボールと友だちになるところからスタート</li>
+              <li>楽しさ最優先のプログラム</li>
+              <li>体験参加無料</li>
+              <li>持ち物：シューズ・飲み物・ボール（あれば）</li>
+            </ul>
+          </div>
+        </div>
+        <div class="class-card featured">
+          <div class="class-header">
+            <h3>ジュニアクラス</h3>
+            <div class="age">小学1年生〜6年生対象</div>
+          </div>
+          <div class="class-body">
+            <div class="class-schedule">毎週木曜 18:00〜20:00</div>
+            <ul class="class-features">
+              <li>「楽しむ」ための基礎技術を習得</li>
+              <li>ドリブル・パス・シュートを体系的に指導</li>
+              <li>体験参加無料</li>
+              <li>持ち物：シューズ・飲み物・ボール（あれば）</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <p style="text-align:center; margin-top:20px; font-size:0.85rem; color:var(--text-muted);">
+        練習場所：近江八幡市立 健康ふれあい公園 A2コート（滋賀県近江八幡市竹町1178）
+      </p>
+    </div>
+  </section>
+
+  <!-- ===== Coach ===== -->
+  <section id="coach" class="section">
+    <div class="container">
+      <div class="section-header">
+        <span class="badge">COACH</span>
+        <h2 class="section-title">コーチ紹介</h2>
+        <p class="section-sub">子どもたちの成長を全力でサポートします</p>
+      </div>
+      <div class="coach-grid">
+        <div class="coach-info">
+          <div class="coach-slideshow">
+            <img src="images/Coach_1.png" alt="西村仁志" class="slide active" />
+            <img src="images/Coach_2.png" alt="西村仁志 プレー" class="slide" />
+            <img src="images/Coach_3.png" alt="西村仁志 プレー" class="slide" />
+            <div class="slide-dots">
+              <button class="slide-dot active" data-i="0"></button>
+              <button class="slide-dot" data-i="1"></button>
+              <button class="slide-dot" data-i="2"></button>
+            </div>
+          </div>
+          <div class="coach-name">西村 仁志</div>
+          <div class="coach-title">ヘッドコーチ</div>
+          <p class="coach-bio">
+            滋賀県出身。サッカーの名門・野洲高校でキャプテンを務め、中京大学へ進学。
+            卒業後はヴィアティン三重・鈴鹿ポイントゲッターズ・FCマルヤス岡崎でプレー。
+            現役引退後は「サッカーを楽しむ喜びを子どもたちに伝えたい」という想いから近江八幡にZORN Football Schoolを設立。
+            元プロとしての技術と、子どもの目線に立った丁寧な指導が強みです。
+          </p>
+          <div class="coach-certs">
+            <span class="cert">野洲高校 主将</span>
+            <span class="cert">中京大学</span>
+            <span class="cert">ヴィアティン三重</span>
+            <span class="cert">鈴鹿ポイントゲッターズ</span>
+            <span class="cert">FCマルヤス岡崎</span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== FAQ ===== -->
+  <section id="faq" class="section">
+    <div class="container">
+      <div class="section-header">
+        <span class="badge">FAQ</span>
+        <h2 class="section-title">よくある質問</h2>
+        <p class="section-sub">ご不明な点はLINEでもお気軽にどうぞ</p>
+      </div>
+      <div class="faq-list">
+        <details>
+          <summary>未経験でも参加できますか？</summary>
+          <p class="faq-answer">もちろんです！キッズ・ジュニアどちらのクラスも、サッカーが初めてのお子さんを大歓迎しています。まずは無料体験で雰囲気を確認してみてください。</p>
+        </details>
+        <details>
+          <summary>体験はどのくらいかかりますか？</summary>
+          <p class="faq-answer">体験は1回無料でご参加いただけます。練習時間は通常クラスと同様で、60〜90分程度です。</p>
+        </details>
+        <details>
+          <summary>道具（ボールなど）は必要ですか？</summary>
+          <p class="faq-answer">持ち物はシューズ・飲み物・ボール（あれば）のみです。ボールがなくても参加できます。シューズはスニーカーで構いません。</p>
+        </details>
+        <details>
+          <summary>兄弟で参加できますか？</summary>
+          <p class="faq-answer">はい、ぜひ！兄弟割引もご用意しています。詳細はLINEにてお問い合わせください。</p>
+        </details>
+        <details>
+          <summary>練習場所はどこですか？</summary>
+          <p class="faq-answer">近江八幡市立 健康ふれあい公園 A2コート（滋賀県近江八幡市竹町1178）で練習を行っています。</p>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== Trial ===== -->
+  <section id="trial" class="section">
+    <div class="container">
+      <div class="trial-card">
+        <h2>まずは無料体験から</h2>
+        <p>入会の前に、雰囲気を体験してみてください。体験は完全無料。道具も不要です。</p>
+        <div class="trial-points">
+          <div class="trial-point"><span>NO</span><span>無理な勧誘なし</span></div>
+          <div class="trial-point"><span>OK</span><span>保護者見学OK</span></div>
+          <div class="trial-point"><span>OK</span><span>1人参加OK</span></div>
+        </div>
+        <div class="trial-buttons">
+          <a href="https://line.me/R/ti/p/@535xcjio?oat_content=url&ts=02261542" target="_blank" rel="noopener" class="btn btn-line">
+            LINEで体験を申し込む
+          </a>
+        </div>
+        <p style="font-size:0.8rem; color:rgba(255,255,255,0.4); margin-top:20px;">
+          ご不明な点はInstagramのDMからもお気軽にどうぞ
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== LINE Banner ===== -->
+  <div id="line-banner">
+    <div class="container">
+      <div class="line-inner">
+        <div class="line-text">
+          <strong>公式LINEでお気軽にご相談を</strong>
+          <p>質問・体験申込・日程調整はLINEが便利です</p>
+        </div>
+        <a href="https://line.me/R/ti/p/@535xcjio?oat_content=url&ts=02261542" target="_blank" rel="noopener" class="btn btn-line-white btn">
+          友だち追加
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== Footer ===== -->
+  <footer>
+    <div class="container">
+      <div class="footer-inner">
+        <div class="footer-brand">
+          <img src="images/logo.jpg" alt="ZORN Football School" style="height:36px; width:auto; object-fit:contain; margin-bottom:12px; filter:brightness(0) invert(1);" />
+          <p>近江八幡のキッズ・ジュニア向けサッカースクール。<br>楽しみながら、本物の技術を。</p>
+        </div>
+        <div class="footer-col">
+          <h4>メニュー</h4>
+          <ul>
+            <li><a href="#about">スクールについて</a></li>
+            <li><a href="#features">ZORNの特長</a></li>
+            <li><a href="#classes">クラス・料金</a></li>
+            <li><a href="#coach">コーチ紹介</a></li>
+            <li><a href="#faq">よくある質問</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>お問い合わせ</h4>
+          <ul>
+            <li><a href="https://line.me/R/ti/p/@535xcjio?oat_content=url&ts=02261542" target="_blank" rel="noopener">公式LINE</a></li>
+            <li><a href="https://www.instagram.com/zorn_football_school/" target="_blank" rel="noopener">Instagram</a></li>
+            <li><a href="#trial">体験申込</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>© 2025 ZORN Football School. All rights reserved.</span>
+        <div class="social-links">
+          <a href="https://www.instagram.com/zorn_football_school/" target="_blank" rel="noopener" class="social-link" title="Instagram">IG</a>
+          <a href="https://line.me/R/ti/p/@535xcjio?oat_content=url&ts=02261542" target="_blank" rel="noopener" class="social-link" title="LINE">LINE</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // コーチ スライドショー
+    (function () {
+      var slides = document.querySelectorAll('.coach-slideshow .slide');
+      var dots = document.querySelectorAll('.slide-dot');
+      var current = 0;
+      function goTo(n) {
+        slides[current].classList.remove('active');
+        dots[current].classList.remove('active');
+        current = (n + slides.length) % slides.length;
+        slides[current].classList.add('active');
+        dots[current].classList.add('active');
+      }
+      dots.forEach(function (dot) {
+        dot.addEventListener('click', function () { goTo(parseInt(dot.dataset.i)); });
+      });
+      setInterval(function () { goTo(current + 1); }, 3500);
+    })();
+
+    (function () {
+      // ギャラリー写真のリスト — images/ フォルダに追加したファイル名をここに足してください
+      const photos = [
+        'images/school_1.png',
+        'images/school_2.png',
+        'images/school_3.png',
+        'images/school_4.png',
+      ];
+
+      for (let i = photos.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [photos[i], photos[j]] = [photos[j], photos[i]];
+      }
+
+      const grid = document.getElementById('galleryGrid');
+      photos.forEach(function (src) {
+        const img = document.createElement('img');
+        img.src = src;
+        img.alt = 'ZORN Football School';
+        img.className = 'gallery-photo';
+        grid.appendChild(img);
+      });
+    })();
+  </script>
+</body>
+</html>
