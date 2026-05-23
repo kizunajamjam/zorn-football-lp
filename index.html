@@ -135,7 +135,98 @@
       font-weight: 700;
     }
     .nav-cta:hover { background: #e0b416; }
-    .hamburger { display: none; cursor: pointer; }
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      justify-content: center;
+      gap: 5px;
+      cursor: pointer;
+      background: none;
+      border: none;
+      padding: 6px;
+      z-index: 200;
+    }
+    .hamburger span {
+      display: block;
+      width: 24px;
+      height: 2px;
+      background: var(--navy);
+      border-radius: 2px;
+      transition: transform 0.3s ease, opacity 0.2s ease;
+      transform-origin: center;
+    }
+    .hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+    .hamburger.open span:nth-child(2) { opacity: 0; transform: scaleX(0); }
+    .hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+    /* Mobile Menu */
+    .mobile-menu {
+      position: fixed;
+      inset: 0;
+      z-index: 150;
+      visibility: hidden;
+    }
+    .mobile-menu.open { visibility: visible; }
+    .mobile-overlay {
+      position: absolute;
+      inset: 0;
+      background: rgba(0,0,0,0);
+      transition: background 0.3s;
+      cursor: pointer;
+    }
+    .mobile-menu.open .mobile-overlay { background: rgba(0,0,0,0.45); }
+    .mobile-panel {
+      position: absolute;
+      top: 0; right: 0;
+      width: 280px;
+      height: 100%;
+      background: #fff;
+      padding: 72px 32px 40px;
+      transform: translateX(100%);
+      transition: transform 0.35s cubic-bezier(0.4,0,0.2,1);
+      overflow-y: auto;
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+      box-shadow: -4px 0 32px rgba(0,0,0,0.12);
+    }
+    .mobile-menu.open .mobile-panel { transform: translateX(0); }
+    .mobile-nav-link {
+      display: block;
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--navy);
+      padding: 18px 0;
+      border-bottom: 1px solid var(--border);
+      letter-spacing: 0.02em;
+      transition: color 0.15s;
+    }
+    .mobile-nav-link:hover { color: var(--red); }
+    .mobile-nav-link:first-child { border-top: 1px solid var(--border); }
+    .mobile-nav-cta {
+      display: block;
+      background: var(--red);
+      color: #0a0a0a !important;
+      font-weight: 700;
+      text-align: center;
+      padding: 16px;
+      border-radius: 6px;
+      margin-top: 32px;
+      font-size: 0.95rem;
+      letter-spacing: 0.03em;
+    }
+    .mobile-nav-cta:hover { background: #e0b416; }
+    .mobile-line-btn {
+      display: block;
+      background: #06c755;
+      color: #fff !important;
+      font-weight: 700;
+      text-align: center;
+      padding: 14px;
+      border-radius: 6px;
+      margin-top: 10px;
+      font-size: 0.88rem;
+    }
 
     /* ===== Hero ===== */
     #hero {
@@ -746,7 +837,9 @@
 
     /* ===== Responsive ===== */
     @media (max-width: 768px) {
-      nav a:not(.nav-cta):not(:last-child) { display: none; }
+      nav a:not(.nav-cta) { display: none; }
+      .nav-cta { display: none; }
+      .hamburger { display: flex; }
       .pain-grid { grid-template-columns: 1fr; }
       .pain-cta { flex-direction: column; align-items: flex-start; }
       .about-grid { grid-template-columns: 1fr; gap: 32px; }
@@ -773,11 +866,32 @@
       <nav>
         <a href="#about">スクールについて</a>
         <a href="#classes">クラス</a>
+        <a href="#access">アクセス</a>
         <a href="#coach">コーチ</a>
         <a href="#trial" class="nav-cta">体験申込</a>
       </nav>
+      <button class="hamburger" id="menuBtn" aria-label="メニューを開く">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
     </div>
   </header>
+
+  <!-- Mobile Menu -->
+  <div class="mobile-menu" id="mobileMenu">
+    <div class="mobile-overlay" id="menuOverlay"></div>
+    <div class="mobile-panel">
+      <a href="#about" class="mobile-nav-link">スクールについて</a>
+      <a href="#features" class="mobile-nav-link">ZORNの特長</a>
+      <a href="#classes" class="mobile-nav-link">クラス</a>
+      <a href="#access" class="mobile-nav-link">アクセス</a>
+      <a href="#coach" class="mobile-nav-link">コーチ紹介</a>
+      <a href="#faq" class="mobile-nav-link">よくある質問</a>
+      <a href="#trial" class="mobile-nav-cta">無料体験に申し込む</a>
+      <a href="https://line.me/R/ti/p/@535xcjio?oat_content=url&ts=02261542" target="_blank" rel="noopener" class="mobile-line-btn">公式LINEへ</a>
+    </div>
+  </div>
 
   <!-- ===== Hero ===== -->
   <section id="hero">
@@ -1193,6 +1307,32 @@
   </footer>
 
   <script>
+    // ハンバーガーメニュー
+    (function () {
+      var btn = document.getElementById('menuBtn');
+      var menu = document.getElementById('mobileMenu');
+      var overlay = document.getElementById('menuOverlay');
+
+      function openMenu() {
+        menu.classList.add('open');
+        btn.classList.add('open');
+        document.body.style.overflow = 'hidden';
+      }
+      function closeMenu() {
+        menu.classList.remove('open');
+        btn.classList.remove('open');
+        document.body.style.overflow = '';
+      }
+
+      btn.addEventListener('click', function () {
+        menu.classList.contains('open') ? closeMenu() : openMenu();
+      });
+      overlay.addEventListener('click', closeMenu);
+      document.querySelectorAll('.mobile-nav-link, .mobile-nav-cta, .mobile-line-btn').forEach(function (link) {
+        link.addEventListener('click', closeMenu);
+      });
+    })();
+
     // コーチ スライドショー
     (function () {
       var slides = document.querySelectorAll('.coach-slideshow .slide');
